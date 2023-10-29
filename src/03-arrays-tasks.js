@@ -75,7 +75,7 @@ function doubleArray(arr) {
  *    [] => []
  */
 function getArrayOfPositives(arr) {
-  return arr.filter(num => num > 0);
+  return arr.filter((num) => num > 0);
 }
 
 /**
@@ -90,7 +90,7 @@ function getArrayOfPositives(arr) {
  *    [ 'cat, 'dog', 'raccoon' ] => [ 'cat', 'dog', 'raccoon' ]
  */
 function getArrayOfStrings(arr) {
-  return arr.filter(item => typeof item === 'string');
+  return arr.filter((item) => typeof item === 'string');
 }
 
 /**
@@ -107,7 +107,7 @@ function getArrayOfStrings(arr) {
  *    [ false, 0, NaN, '', undefined ]   => [ ]
  */
 function removeFalsyValues(arr) {
-  return arr.filter(item => Boolean(item));
+  return arr.filter((item) => Boolean(item));
 }
 
 /**
@@ -122,7 +122,7 @@ function removeFalsyValues(arr) {
  *    [ 'a', 'b', 'c', 'd', 'e', 'f', 'g' ]  => [ 'A', 'B', 'C', 'D', 'E', 'F', 'G' ]
  */
 function getUpperCaseStrings(arr) {
-  return arr.map(item => item.toUpperCase());
+  return arr.map((item) => item.toUpperCase());
 }
 
 
@@ -137,7 +137,7 @@ function getUpperCaseStrings(arr) {
  *    [ 'angular', 'react', 'ember' ] => [ 7, 5, 5 ]
  */
 function getStringsLength(arr) {
-  return arr.map(item => item.length);
+  return arr.map((item) => item.length);
 }
 
 /**
@@ -207,7 +207,7 @@ function getTail(arr, n) {
  *    +'30,31,32,33,34'
  */
 function toCsvText(arr) {
-  return arr.map(row => row.join(',')).join('\n');
+  return arr.map((row) => row.join(',')).join('\n');
 }
 
 /**
@@ -222,7 +222,7 @@ function toCsvText(arr) {
  *   [ 10, 100, -1 ]      => [ 100, 10000, 1 ]
  */
 function toArrayOfSquares(arr) {
-  return arr.map(x => x * x);
+  return arr.map((x) => x * x);
 }
 
 
@@ -316,7 +316,7 @@ function get3TopItems(arr) {
  *   [ 1, '2' ] => 1
  */
 function getPositivesCount(arr) {
-  return arr.filter(item => typeof item === 'number' && item > 0).length;
+  return arr.filter((item) => typeof item === 'number' && item > 0).length;
 }
 
 /**
@@ -335,16 +335,16 @@ function getPositivesCount(arr) {
 function sortDigitNamesByNumericOrder(arr) {
   // Объект для отображения порядковых числительных
   const digitOrder = {
-    'zero': 0,
-    'one': 1,
-    'two': 2,
-    'three': 3,
-    'four': 4,
-    'five': 5,
-    'six': 6,
-    'seven': 7,
-    'eight': 8,
-    'nine': 9,
+    zero: 0,
+    one: 1,
+    two: 2,
+    three: 3,
+    four: 4,
+    five: 5,
+    six: 6,
+    seven: 7,
+    eight: 8,
+    nine: 9,
   };
   return arr.sort((a, b) => digitOrder[a] - digitOrder[b]);
 }
@@ -379,7 +379,7 @@ function getItemsSum(arr) {
  *  [ null, undefined, NaN, false, 0, '' ]  => 6
  */
 function getFalsyValuesCount(arr) {
-  const falsyValues = arr.filter(value => !value);
+  const falsyValues = arr.filter((value) => !value);
   return falsyValues.length;
 }
 
@@ -398,9 +398,7 @@ function getFalsyValuesCount(arr) {
  *    [ true, 0, 1, 'true' ], true => 1
  */
 function findAllOccurrences(arr, item) {
-  const occurrences = arr.reduce((count, current) => {
-    return current === item ? count + 1 : count;
-  }, 0);
+  const occurrences = arr.reduce((count, current) => (current === item ? count + 1 : count), 0);
   return occurrences;
 }
 
@@ -478,9 +476,9 @@ function sortCitiesArray(arr) {
  */
 function getIdentityMatrix(n) {
   const matrix = [];
-  for (let i = 0; i < n; i++) {
+  for (let i = 0; i < n; i += 1) {
     const row = [];
-    for (let j = 0; j < n; j++) {
+    for (let j = 0; j < n; j += 1) {
       // Заполняем элементы матрицы: 1, если i равно j, иначе 0
       row.push(i === j ? 1 : 0);
     }
@@ -504,7 +502,7 @@ function getIdentityMatrix(n) {
  */
 function getIntervalArray(start, end) {
   const result = [];
-  for (let i = start; i <= end; i++) {
+  for (let i = start; i <= end; i += 1) {
     result.push(i);
   }
   return result;
@@ -629,16 +627,15 @@ function getElementByIndexes(arr, indexes) {
  *
  */
 function swapHeadAndTail(arr) {
-  const length = arr.length;
+  const { length } = arr;
   const middle = Math.floor(length / 2);
   const head = arr.slice(0, middle);
   const tail = arr.slice(-middle);
   if (length % 2 === 0) {
     return [...tail, ...head];
-  } else {
-    const middleElement = arr[middle];
-    return [...tail, middleElement, ...head];
   }
+  const middleElement = arr[middle];
+  return [...tail, middleElement, ...head];
 }
 
 

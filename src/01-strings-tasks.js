@@ -66,7 +66,7 @@ function getStringFromTemplate(firstName, lastName) {
  *   'Hello, Chuck Norris!' => 'Chuck Norris'
  */
 function extractNameFromTemplate(value) {
-  let ind = inputString.indexOf(',');
+  const ind = value.indexOf(',');
   return value.slice(ind + 2).trim();
 }
 
@@ -178,7 +178,7 @@ function convertToUpperCase(str) {
  */
 function extractEmails(str) {
   const emailArray = str.split(';');
-  const filteredEmailArray = emailArray.filter(email => email.trim() !== '');
+  const filteredEmailArray = emailArray.filter((email) => email.trim() !== '');
   return filteredEmailArray;
 }
 
@@ -207,8 +207,8 @@ function extractEmails(str) {
  */
 function getRectangleString(width, height) {
   let result = '';
-  for (let i = 0; i < height; i++) {
-    for (let j = 0; j < width; j++) {
+  for (let i = 0; i < height; i += 1) {
+    for (let j = 0; j < width; j += 1) {
       if (i === 0) {
         // Верхняя граница прямоугольника
         if (j === 0) {
@@ -226,12 +226,10 @@ function getRectangleString(width, height) {
         } else {
           result += '─';
         }
+      } else if (j === 0 || j === width - 1) {
+        result += '│';
       } else {
-        if (j === 0 || j === width - 1) {
-          result += '│';
-        } else {
-          result += ' ';
-        }
+        result += ' ';
       }
     }
     result += '\n';
@@ -257,9 +255,10 @@ function getRectangleString(width, height) {
  *
  */
 function encodeToRot13(str) {
-  return str.replace(/[a-zA-Z]/g, function (char) {
+  return str.replace(/[a-zA-Z]/g, (char) => {
     const isUpperCase = char === char.toUpperCase();
     const offset = isUpperCase ? 65 : 97;
+    // eslint-disable-next-line no-mixed-operators
     return String.fromCharCode((char.charCodeAt(0) - offset + 13) % 26 + offset);
   });
 }
@@ -308,17 +307,15 @@ function isString(value) {
  */
 function getCardId(value) {
   const cards = [
-    'A♣','2♣','3♣','4♣','5♣','6♣','7♣','8♣','9♣','10♣','J♣','Q♣','K♣',
-    'A♦','2♦','3♦','4♦','5♦','6♦','7♦','8♦','9♦','10♦','J♦','Q♦','K♦',
-    'A♥','2♥','3♥','4♥','5♥','6♥','7♥','8♥','9♥','10♥','J♠','Q♠','K♠'
-  ];
+    'A♣', '2♣', '3♣', '4♣', '5♣', '6♣', '7♣', '8♣', '9♣', '10♣', 'J♣', 'Q♣', 'K♣',
+    'A♦', '2♦', '3♦', '4♦', '5♦', '6♦', '7♦', '8♦', '9♦', '10♦', 'J♦', 'Q♦', 'K♦',
+    'A♥', '2♥', '3♥', '4♥', '5♥', '6♥', '7♥', '8♥', '9♥', '10♥', 'J♠', 'Q♠', 'K♠'];
 
   const index = cards.indexOf(value);
   if (index !== -1) {
     return index;
-  } else {
-    throw new Error('Invalid card value');
   }
+  throw new Error('Invalid card value');
 }
 
 module.exports = {

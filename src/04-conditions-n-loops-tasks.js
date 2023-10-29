@@ -30,13 +30,12 @@
 function getFizzBuzz(num) {
   if (num % 3 === 0 && num % 5 === 0) {
     return 'FizzBuzz';
-  } else if (num % 3 === 0) {
+  } if (num % 3 === 0) {
     return 'Fizz';
-  } else if (num % 5 === 0) {
+  } if (num % 5 === 0) {
     return 'Buzz';
-  } else {
-    return num;
   }
+  return num;
 }
 
 
@@ -54,9 +53,8 @@ function getFizzBuzz(num) {
 function getFactorial(n) {
   if (n === 0 || n === 1) {
     return 1;
-  } else {
-    return n * getFactorial(n - 1);
   }
+  return n * getFactorial(n - 1);
 }
 
 
@@ -75,7 +73,7 @@ function getFactorial(n) {
 function getSumBetweenNumbers(n1, n2) {
   let sum = 0;
 
-  for (let i = n1; i <= n2; i++) {
+  for (let i = n1; i <= n2; i += 1) {
     sum += i;
   }
 
@@ -185,13 +183,13 @@ function isInsideCircle(circle, point) {
  *   'abracadabra'  => 'c'
  *   'entente' => null
  */
- function findFirstSingleChar(str) {
+function findFirstSingleChar(str) {
   const charCount = {};
-
-  // Подсчитываем количество вхождений каждого символа в строке
-for (const char of str) {
-  charCount[char] = (charCount[char] || 0) + 1;
-}
+  // eslint-disable-next-line no-restricted-syntax
+  for (const char of str) {
+    charCount[char] = (charCount[char] || 0) + 1;
+  }
+  // eslint-disable-next-line no-restricted-syntax
   for (const char of str) {
     if (charCount[char] === 1) {
       return char;
@@ -345,9 +343,12 @@ function getDigitalRoot(num) {
  */
 function isBracketsBalanced(str) {
   const stack = [];
-  const bracketsMap = { '}': '{', ']': '[', ')': '(', '>': '<' };
+  const bracketsMap = {
+    '}': '{', ']': '[', ')': '(', '>': '<',
+  };
   const openingBrackets = Object.values(bracketsMap);
 
+  // eslint-disable-next-line no-restricted-syntax
   for (const char of str) {
     if (openingBrackets.includes(char)) {
       stack.push(char);
@@ -419,10 +420,10 @@ function getCommonDirectoryPath(paths) {
     return '';
   }
   const commonPathArr = [];
-  const pathSegments = paths.map(path => path.split('/'));
-  for (let i = 0; i < pathSegments[0].length; i++) {
+  const pathSegments = paths.map((path) => path.split('/'));
+  for (let i = 0; i < pathSegments[0].length; i += 1) {
     const segment = pathSegments[0][i];
-    if (pathSegments.every(path => path[i] === segment)) {
+    if (pathSegments.every((path) => path[i] === segment)) {
       commonPathArr.push(segment);
     } else {
       break;
@@ -432,7 +433,7 @@ function getCommonDirectoryPath(paths) {
     return '';
   }
   const commonPath = commonPathArr.join('/');
-  return commonPath.endsWith('/') ? commonPath : commonPath + '/';
+  return commonPath.endsWith('/') ? commonPath : `${commonPath}/`;
 }
 
 

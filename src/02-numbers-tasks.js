@@ -73,7 +73,7 @@ function getAverage(value1, value2) {
  *   (-5,0) (10,-10) => 18.027756377319946
  */
 function getDistanceBetweenPoints(x1, y1, x2, y2) {
-  const distance = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+  const distance = Math.sqrt((x2 - x1) ** 2) + ((y2 - y1) ** 2);
   return distance;
 }
 
@@ -172,7 +172,7 @@ function parseNumberFromString(value) {
  *   1,2,3   => 3.741657386773941
  */
 function getParallelepipedDiagonal(a, b, c) {
-  const diagonal = Math.sqrt(a**2 + b**2 + c**2);
+  const diagonal = Math.sqrt(a ** 2 + b ** 2 + c ** 2);
   return diagonal;
 }
 
@@ -224,7 +224,7 @@ function isPrime(n) {
   }
 
   // Перебираем числа от 2 до квадратного корня из n
-  for (let i = 2; i <= Math.sqrt(n); i++) {
+  for (let i = 2; i <= Math.sqrt(n); i += 1) {
     // Если n делится на i без остатка, то n не простое
     if (n % i === 0) {
       return false;
@@ -253,8 +253,8 @@ function isPrime(n) {
 function toNumber(value, def) {
   // Пытаемся преобразовать значение к числу
   const convertedValue = Number(value);
-
   // Если преобразование было успешным, возвращаем результат, иначе возвращаем значение по умолчанию
+  // eslint-disable-next-line no-restricted-globals
   return !isNaN(convertedValue) ? convertedValue : def;
 }
 
